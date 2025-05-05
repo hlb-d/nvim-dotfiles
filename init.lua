@@ -2,6 +2,7 @@ require 'core.options'
 require 'core.keymaps'
 require 'core.snippets'
 
+-- [[ Lazy setup ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -30,5 +31,3 @@ require('lazy').setup {
   require 'plugins.indent-blankline',
   require 'plugins.misc',
 }
-
--- Testing git status line
