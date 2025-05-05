@@ -18,7 +18,7 @@ return {
         'eslint_d', -- ts/js linter
         'shfmt', -- Shell formatter
         'ruff', -- Python linter and formatter
-        -- 'uncrustify', -- C / C++ formatter
+        'uncrustify', -- C / C++ formatter
         -- 'dxfmt', -- Rust formatter
       },
       automatic_installation = true,
