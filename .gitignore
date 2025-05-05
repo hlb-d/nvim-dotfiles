@@ -1,0 +1,29 @@
+# Neovim swap, backup, and undo files
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.old
+*.un~
+
+# Undo history (if stored here)
+undo/
+
+# Session files
+Session.vim
+session/
+
+# LSP server logs
+log/
+
+# Compiled Lua cache
+*.luac
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+
+# MacOS metadata
+.DS_Store
