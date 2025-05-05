@@ -30,3 +30,5 @@ require('lazy').setup {
   require 'plugins.indent-blankline',
   require 'plugins.misc',
 }
+
+-- Testing git status line
