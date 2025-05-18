@@ -3,6 +3,9 @@ return {
   {
     'mfussenegger/nvim-dap',
     config = function()
+      vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
+      vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' })
+
       local dap = require 'dap'
 
       dap.adapters.lldb = {
@@ -27,6 +30,34 @@ return {
           runInTerminal = false,
         },
       }
+
+      dap.adapters.cppdbg = {
+        id = 'cppdbg',
+        type = 'executable',
+        command = vim.fn.stdpath 'data' .. '/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+      }
+
+      dap.configurations.cpp = {
+        {
+          name = 'Launch file (GDB)',
+          type = 'cppdbg',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopAtEntry = true,
+          setupCommands = {
+            {
+              text = '-enable-pretty-printing',
+              description = 'Enable GDB pretty printing',
+              ignoreFailures = true,
+            },
+          },
+        },
+      }
+
+      dap.configurations.c = dap.configurations.cpp
     end,
   },
 
