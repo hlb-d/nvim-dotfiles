@@ -46,7 +46,7 @@ return {
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
           end,
           cwd = '${workspaceFolder}',
-          stopAtEntry = true,
+          stopAtEntry = false,
           setupCommands = {
             {
               text = '-enable-pretty-printing',
@@ -58,6 +58,27 @@ return {
       }
 
       dap.configurations.c = dap.configurations.cpp
+
+      -- DAP keymaps
+      local opts = { noremap = true, silent = true }
+      vim.keymap.set('n', '<F5>', function()
+        dap.continue()
+      end, opts)
+      vim.keymap.set('n', '<F10>', function()
+        dap.step_over()
+      end, opts)
+      vim.keymap.set('n', '<F11>', function()
+        dap.step_into()
+      end, opts)
+      vim.keymap.set('n', '<F12>', function()
+        dap.step_out()
+      end, opts)
+      vim.keymap.set('n', '<Leader>b', function()
+        dap.toggle_breakpoint()
+      end, opts)
+      vim.keymap.set('n', '<Leader>B', function()
+        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end, opts)
     end,
   },
 
@@ -77,6 +98,11 @@ return {
       dap.listeners.before.event_exited['dapui_config'] = function()
         dapui.close()
       end
+      -- Add dapui-related keymap
+      vim.keymap.set('n', '<Leader>dq', function()
+        dap.terminate()
+        dapui.close()
+      end, { noremap = true, silent = true })
     end,
   },
 }
