@@ -75,8 +75,7 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Exit insert mode
-vim.keymap.set('i', 'jk', '<ESC>', opts)
-vim.keymap.set('i', 'kj', '<ESC>', opts)
+vim.keymap.set('i', 'ii', '<ESC>', opts)
 
 -- Move text up and down
 vim.keymap.set('v', '<A-j>', ':m .+1<CR>==', opts)
